@@ -7,6 +7,9 @@
         height="24"
         class="inline-block align-text-top mx-2"
       />
+      <span>
+        Journal - App
+      </span>
     </a>
     <div class="d-flex">
       <button class="btn btn-outline-info mx-2">
@@ -16,3 +19,13 @@
     </div>
   </nav>
 </template>
+
+<style lang="scss" scoped>
+a{
+  text-decoration: none;
+  
+  
+}
+
+
+</style>
