@@ -20,7 +20,9 @@
     <div class="d-flex flex-column mx-3 h-75">
         <textarea class="form-control" placeholder="Que sucedio Hoy?"></textarea>
     </div>
-    <fab />
+    <fab
+        icon="fa-save"
+    />
     <img src="https://leonardo-cdn.b-cdn.net/wp-content/uploads/2023/07/Default_Hyper_realistic_spiderman_ancient_samurai_style_use_sa_1_7f41ff36-48f2-4b8f-afe0-41d88b2c6876_1.jpeg"
         alt="entry-picture"
         class="img-thumbnail"    
