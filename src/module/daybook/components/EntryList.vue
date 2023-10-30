@@ -1,57 +1,79 @@
 <template>
-  <div class="entry-list-container">
-    <div class="px-2 pt-2">
-        <input type="text" class="form-control" placeholder="Buscar Entrada">
+    <div class="entry-list-container">
+        <div class="px-2 pt-2">
+            <input 
+            type="text" 
+            class="form-control" 
+            placeholder="Buscar Entrada"
+            v-model="term"
+            >
 
+        </div>
+        <div class="entry-scrollarea">
+            <Entry 
+            v-for="item in entriesByTerm"
+             :key="item.id"
+             :entry="item"
+             >
+
+            </Entry>
+        </div>
     </div>
-    <div class="entry-scrollarea">
-        <Entry
-        v-for="item in 100" :key="item"
-        >
-            
-        </Entry>
-    </div>
-  </div>
 </template>
 
 <script>
+
 import { defineAsyncComponent } from 'vue'
-    export default {
-        components:{
-            Entry:defineAsyncComponent(()=>import('./Entry.vue'))
+import { mapGetters } from 'vuex'
+export default {
+    components: {
+        Entry: defineAsyncComponent(() => import('./Entry.vue'))
+    },
+    computed: {
+        ...mapGetters('journal', ['getEntryByTerm']),
+        entriesByTerm(){
+            return this.getEntryByTerm( this.term)
+        }
+    },
+    data() {
+        return {
+            term: ''
         }
     }
+}
 </script>
 
 <style lang="scss" scoped>
-
-input{
+input {
     height: 55px;
 }
-.entry-list-container
-    {
+
+.entry-list-container {
     border-right: 1px solid #607D8B;
-    height: calc( 100vh - 56px  );
+    height: calc(100vh - 56px);
     overflow: hidden;
-    
-    }
-.entry-scrollarea{
-    height: calc( 100vh - 90px  );
+
+}
+
+.entry-scrollarea {
+    height: calc(100vh - 90px);
     overflow-y: scroll;
 }
-    /* Estilos para motores Webkit y blink (Chrome, Safari, Opera... )*/
+
+/* Estilos para motores Webkit y blink (Chrome, Safari, Opera... )*/
 
 .entry-scrollarea::-webkit-scrollbar {
     -webkit-appearance: none;
 }
 
 .entry-scrollarea::-webkit-scrollbar:vertical {
-    width:10px;
+    width: 10px;
 }
 
-.entry-scrollarea::-webkit-scrollbar-button:increment,.entry-scrollarea::-webkit-scrollbar-button {
+.entry-scrollarea::-webkit-scrollbar-button:increment,
+.entry-scrollarea::-webkit-scrollbar-button {
     display: none;
-} 
+}
 
 .entry-scrollarea::-webkit-scrollbar:horizontal {
     height: 10px;
@@ -64,7 +86,6 @@ input{
 }
 
 .entry-scrollarea::-webkit-scrollbar-track {
-    border-radius: 10px;  
+    border-radius: 10px;
 }
-
 </style>
